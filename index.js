@@ -31,7 +31,7 @@ process.on('uncaughtException', function (err) {
 // Prevents bot from crash
 process.on('SIGINT', function (code) {
     durationwork = bot.time.duration(startingts, Date.now());
-    bot.base.clt.setStatus(`${commsg.status.exiting} ${durationwork}`, 0, 4);
+    bot.base.clt.setStatus(`${commsg.status.exiting} ${durationwork}`, 4, 4);
     bot.log.all(debugmsg.stop.durationmsg + durationwork, true, "", initialized);
     bot.log.all(debugmsg.stop.exitingmsg + code, true, "**", initialized);
 
@@ -40,6 +40,9 @@ process.on('SIGINT', function (code) {
     }, 5000);
 });
 
+// Load plate vars
+global.carplates = require("./carplates.json");
+global.sessionStartTime = -1;
 
 // --- BOT EVENTS SECTION --- \\
 
@@ -92,9 +95,7 @@ client.on('messageCreate', message => {
     if (message.content.startsWith("tagueule"))
         message.channel.send("\u200B");
     if (message.guild.id in cfg.mutedservers) return;
-    tests.msg(message);
-    //bot.alert.warn("Nouveau message")
-    tests.bf(message);
+    //tests.msg(message);
     bot.dscrd.message.onNew(message);
 });
 
@@ -107,58 +108,5 @@ client.on('messageDelete', message => {
     if (message.guild.id in cfg.mutedservers) return;
     bot.dscrd.message.onDel(message);
 });
-
-client.on('messageReactionAdd', (reaction, user) => {
-    if (reaction.message.guild.id in cfg.mutedservers) return;
-    bot.dscrd.message.onReactAdd(reaction, user);
-});
-
-client.on('messageReactionRemove', (messageReaction, user) => {
-    if (messageReaction.message.guild.id in cfg.mutedservers) return;
-    bot.dscrd.message.onReactAdd(reaction, user);
-});
-
-
-
-// --- INTERACTION EVENTS SECTION --- \\
-
-// triggered when a slash command is executed
-client.on('interactionCreate', interaction => {
-    if (interaction.guild.id in cfg.mutedservers) return;
-    bot.dscrd.interaction.on(interaction);
-});
-
-
-
-// --- MEMBER EVENTS SECTION --- \\
-
-// triggered when a member join the server
-client.on('guildMemberAdd', async member => {
-    if (member.guild.id in cfg.mutedservers) return;
-    bot.dscrd.guild.onMemberJoin(member);
-});
-
-// triggered when a member left the server
-client.on('guildMemberRemove', async member => {
-    if (member.guild.id in cfg.mutedservers) return;
-    bot.dscrd.guild.onMemberLeave(member);
-});
-
-// triggered when a member is banned on a server
-client.on('guildAuditLogEntryCreate', async (audit, guild) => {
-    if (guild.id in cfg.mutedservers) return;
-    bot.dscrd.guild.onAuditLog(audit, guild);
-});
-
-
-// triggered when there is a member update
-client.on('guildMemberUpdate', (oldMember, newMember) => {
-    if (newMember.guild.id in cfg.mutedservers) return;
-    // when a member boost a server not muted
-    if (newMember.premiumSinceTimestamp > 0 && oldMember.premiumSince != newMember.premiumSince)
-        return;
-    //   imaGen.boost(newMember)
-});
-
 
 client.login(process.env.TOKEN);

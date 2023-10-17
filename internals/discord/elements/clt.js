@@ -14,7 +14,7 @@ module.exports = {
             * Set bot activity and status
             *
             * @param {string} activity message to put in activity (null to keep previous)
-            * @param {int} type default = 0 playing | 1 streaming | 2 listening | 3 watching 4 custom
+            * @param {int} type default = 0 playing | 1 streaming | 2 listening | 3 watching | 4 custom
             * @param {int} status 0 null (keep previous) | 1 online | 2 idle | 3 invisible | 4 dnd (default : null)
             */
     setStatus: function (activity, type = 0, status = 0) {
