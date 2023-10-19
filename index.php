@@ -1,6 +1,17 @@
 <?php session_start();
 
+if (isset($_POST["newsession"]))
+{
+    $_SESSION["name"] = htmlspecialchars($_SESSION["newsession"]);
+    $_SESSION["time"] = time();
+    header("Location: ./");
+}
 
+if (isset($_POST["end"]))
+{
+    unset($_SESSION["name"], $_SESSION["time"]);
+    header("Location: ./");
+}
 
 ?>
 
@@ -24,16 +35,15 @@
     <?php
     if (!isset($_SESSION["name"]) || !isset($_SESSION["time"])) {
     ?>
-
+        <form method="post">
+            <input type="text" id="sessioninput" name="newsession" required maxlength="32" placeholder="pseudo" title="Enter a pseudo for your session">
+            <input type="submit" id="sessionsubmit" name="startsession" value="START" />
+        </form>
     <?php
     } else {
     ?>
         <form method="post">
-        <input type="text" id="plateinput" name="plate" required
-                        placeholder="<?php echo $texts[4][$lng] ?>"
-                        pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+"
-                        minlength="6" maxlength="6" size="6" 
-                        title="Enter the car plate">
+            <input type="text" id="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000">
             <input type="submit" id="platesubmit" name="sendplate" value=">" />
         </form>
         <form method="post">

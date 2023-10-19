@@ -1,0 +1,45 @@
+#platesubmit {
+    font-weight: bold;
+
+    background-color: cyan;
+    color: black;
+}
+
+#platesubmit:hover {
+    background-color: rgb(8, 156, 156);
+}
+
+#platesubmit:active {
+    /* border-radius: calc( var(--inputradiusbtn) - var(--bordersizebtn)); */
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+
+#plateinput:invalid {
+    filter: saturate(0);
+}
+
+#plateinput:invalid~#platesubmit {
+    /* background-color: var(--dark-red);
+    color: var(--red); */
+    background-color: gray;
+    filter: saturate(0);
+    cursor: not-allowed;
+
+}
+
+#plateinput:invalid~#platesubmit:hover {
+    cursor: not-allowed;
+}
+
+#plateinput:invalid~#platesubmit:active {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#plateinput:valid+#platesubmit {
+    background-color: cyan;
+}
+
+#plateinput:valid+#platesubmit:hover {
+    border: 2px solid rgb(8, 156, 156);
+}
