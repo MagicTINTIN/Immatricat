@@ -1,14 +1,12 @@
 <?php session_start();
 
-if (isset($_POST["newsession"]))
-{
+if (isset($_POST["newsession"])) {
     $_SESSION["name"] = htmlspecialchars($_SESSION["newsession"]);
     $_SESSION["time"] = time();
     header("Location: ./");
 }
 
-if (isset($_POST["end"]))
-{
+if (isset($_POST["end"])) {
     unset($_SESSION["name"], $_SESSION["time"]);
     header("Location: ./");
 }
@@ -43,8 +41,15 @@ if (isset($_POST["end"]))
     } else {
     ?>
         <form method="post">
+            <span id="output"></span>
+            <div id="multibtn">
+                <input type="submit" id="platesubmit" name="sendnplate" value="NORMAL" />
+                <input type="submit" id="platesubmit" name="sendbplate" value="BUS" />
+                <input type="submit" id="platesubmit" name="sendlplate" value="LOCATION" />
+                <input type="submit" id="platesubmit" name="sendpplate" value="PARKED" />
+            </div>
             <input type="text" id="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000">
-            <input type="submit" id="platesubmit" name="sendplate" value=">" />
+
         </form>
         <form method="post">
             <input type="submit" id="submitend" name="end" value="END" />
