@@ -28,12 +28,12 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     $newplatetype = 0;
     $oldplatetype = 0;
     $nbSeen = 1;
-    $time = time();
+    $now = time();
     if (sizeof($plates) > 0) {
-        $isNewPlate = false;
+        $isNewPlate = 0;
         $oldplatetype = $plates[0]["type"];
         $nbSeen += $plates[0]["nbSeen"];
-        $outputvalue += "+ Seen ". getTime((int) $plates[0]["lastSeen"], $time) ." ago<br>";
+        $outputvalue += "+ Seen " . getTime((int) $plates[0]["lastSeen"], $now) . " ago<br>";
     } else {
         $outputvalue += "+ NEW <br>";
     }
@@ -49,12 +49,10 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             $outputvalue += "-> Bus<br>";
         $newplatetype = 5;
     } else if (isset($_POST["sendpplate"])) {
-        if ($oldplatetype == 3)
-        {
+        if ($oldplatetype == 3) {
             $isNewPlate = -1;
-            $outputvalue += "ALREADY PARKED<br>";
-        }
-        else
+            $outputvalue += "ALREADY SEEN PARKED<br>";
+        } else
             $outputvalue += "-> Parked<br>";
         $newplatetype = 3;
     }
@@ -64,19 +62,28 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 
 
     if ($isNewPlate == 1) {
-        $sqlQuery = 'INSERT INTO plates(session, createdAt, plate, lastSeen, nbSeen, type) VALUES (:usr, :mail, :pw)';
+        $sqlQuery = 'INSERT INTO plates(session, sessionTime, createdAt, plate, lastSeen, nbSeen, type) VALUES (:session, :sessionTime, :createdAt, :plate, :lastSeen, :nbSeen, :type)';
 
-        $insertUser = $db->prepare($sqlQuery);
-        $insertUser->execute([
-            'usr' => htmlspecialchars($_POST['cauthor']),
-            'mail' => htmlspecialchars($_POST['cemail']),
-            'pw' => password_hash(htmlspecialchars($_POST['cpassword']), PASSWORD_DEFAULT),
+        $insertPlate = $db->prepare($sqlQuery);
+        $insertPlate->execute([
+            'session' => $_SESSION["name"],
+            'sessionTime' => $_SESSION["time"],
+            'createdAt' => $now,
+            'plate' => $platename,
+            'lastSeen' => $now,
+            'nbSeen' => $nbSeen,
+            'type' => $newplatetype
         ]);
-        $_SESSION["username"] = htmlspecialchars($_POST['cauthor']);
-        $_SESSION["email"] = htmlspecialchars($_POST['cemail']);
-    }
-    else if ($isNewPlate == 0) {
+    } else if ($isNewPlate == 0) {
+        $sqlQuery = 'UPDATE plates SET lastSeen = :lastSeen, nbSeen = :nbSeen, type = :type WHERE plate = :plate';
 
+        $updatePlates = $db->prepare($sqlQuery);
+        $updatePlates->execute([
+            'plate' => $platename,
+            'lastSeen' => $now,
+            'nbSeen' => $nbSeen,
+            'type' => $newplatetype
+        ]);
     }
 }
 
