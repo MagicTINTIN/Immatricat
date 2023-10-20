@@ -3,6 +3,9 @@
 if (isset($_POST["newsession"])) {
     $_SESSION["name"] = htmlspecialchars($_SESSION["newsession"]);
     $_SESSION["time"] = time();
+    $_SESSION["new"] = 0;
+    $_SESSION["updated"] = 0;
+    $_SESSION["total"] = 0;
     header("Location: ./");
 }
 
@@ -15,7 +18,7 @@ include_once("includes/db.php");
 include_once("includes/time.php");
 $outputvalue = "";
 
-if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"])) {
+if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"]) && isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) {
     $platename = htmlspecialchars($_POST["plate"]);
 
     $db = dbConnect();
@@ -74,6 +77,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             'nbSeen' => $nbSeen,
             'type' => $newplatetype
         ]);
+        $_SESSION["new"] += 1;
     } else if ($isNewPlate == 0) {
         $sqlQuery = 'UPDATE plates SET lastSeen = :lastSeen, nbSeen = :nbSeen, type = :type WHERE plate = :plate';
 
@@ -84,7 +88,9 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             'nbSeen' => $nbSeen,
             'type' => $newplatetype
         ]);
+        $_SESSION["updated"] += 1;
     }
+    $_SESSION["total"] += 1;
 }
 
 ?>
@@ -108,15 +114,18 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 <body>
     <main>
         <?php
-        if (!isset($_SESSION["name"]) || !isset($_SESSION["time"])) {
+        if (!isset($_SESSION["name"]) || !isset($_SESSION["time"]) || !isset($_SESSION["total"]) || !isset($_SESSION["updated"]) || !isset($_SESSION["new"])) {
         ?>
             <form id="createsession" method="post">
                 <input type="text" id="sessioninput" name="newsession" required maxlength="32" placeholder="pseudo" title="Enter a pseudo for your session">
                 <input type="submit" id="sessionsubmit" name="startsession" value="START" />
             </form>
-        <?php
+            <?php if (isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) { ?>
+                <div id="output"><?php echo "New : " . $_SESSION["new"] . "<br>Updated : " . $_SESSION["updated"] . "<br>Total : " . $_SESSION["total"] ?></div>
+            <?php }
         } else {
-        ?>
+            ?>
+            <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
             <form id="plateform" method="post">
                 <div id="multibtn">
                     <div class="row">
