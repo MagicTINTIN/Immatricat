@@ -42,7 +42,6 @@ if (isset($_POST["end"])) {
         } else {
         ?>
             <form id="plateform" method="post">
-                <span id="output"></span>
                 <div id="multibtn">
                     <div class="row">
                         <input type="submit" id="platesubmitn" class="subplate" name="sendnplate" value="NORMAL" />
@@ -53,12 +52,14 @@ if (isset($_POST["end"])) {
                         <input type="submit" id="platesubmitp" class="subplate" name="sendpplate" value="PARKED" />
                     </div>
                 </div>
-                <input type="text" id="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000">
-
+                <input type="text" id="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </form>
+
             <form id="endform" method="post">
                 <input type="submit" id="submitend" name="end" value="END SESSION" />
             </form>
+
+            <div id="output">Last seen 3d ago</div>
         <?php
         }
         ?>
