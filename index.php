@@ -1,12 +1,13 @@
 <?php session_start();
 
-if (isset($_POST["newsession"])) {
-    $_SESSION["name"] = htmlspecialchars($_SESSION["newsession"]);
+if (isset($_POST["newsession"]) && isset($_POST["startsession"])) {
+    $_SESSION["name"] = htmlspecialchars($_POST["newsession"]);
     $_SESSION["time"] = time();
     $_SESSION["new"] = 0;
     $_SESSION["updated"] = 0;
     $_SESSION["total"] = 0;
     header("Location: ./");
+    exit();
 }
 
 if (isset($_POST["end"])) {
@@ -22,7 +23,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     $platename = htmlspecialchars($_POST["plate"]);
 
     $db = dbConnect();
-    $platesStatement = $db->prepare('SELECT * FROM plates WHERE username = :plate');
+    $platesStatement = $db->prepare('SELECT * FROM plates WHERE plate = :plate');
     $platesStatement->execute(['plate' => $platename]);
     $plates = $platesStatement->fetchAll();
 
@@ -36,31 +37,31 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         $isNewPlate = 0;
         $oldplatetype = $plates[0]["type"];
         $nbSeen += $plates[0]["nbSeen"];
-        $outputvalue += "+ Seen " . getTime((int) $plates[0]["lastSeen"], $now) . " ago<br>";
+        $outputvalue .= "+ Seen " . getTime((int) $plates[0]["lastSeen"], $now) . " ago<br>";
     } else {
-        $outputvalue += "+ NEW <br>";
+        $outputvalue .= "+ NEW <br>";
     }
 
     if (isset($_POST["sendnplate"])) {
         // do nothing
     } else if (isset($_POST["sendlplate"])) {
-        if ($oldplatetype == 7)
-            $outputvalue += "-> Rented car<br>";
+        if ($oldplatetype != 7)
+            $outputvalue .= "-> Rented car<br>";
         $newplatetype = 7;
     } else if (isset($_POST["sendbplate"])) {
-        if ($oldplatetype == 5)
-            $outputvalue += "-> Bus<br>";
+        if ($oldplatetype != 5)
+            $outputvalue .= "-> Bus<br>";
         $newplatetype = 5;
     } else if (isset($_POST["sendpplate"])) {
         if ($oldplatetype == 3) {
             $isNewPlate = -1;
-            $outputvalue += "ALREADY SEEN PARKED<br>";
+            $outputvalue .= "ALREADY SEEN PARKED<br>";
         } else
-            $outputvalue += "-> Parked<br>";
+            $outputvalue .= "-> Parked<br>";
         $newplatetype = 3;
     }
     if (!isset($_POST["sendpplate"]) && $oldplatetype == 3) {
-        $outputvalue += "-> Not parked<br>";
+        $outputvalue .= "-> Not parked<br>";
     }
 
 
@@ -91,6 +92,11 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         $_SESSION["updated"] += 1;
     }
     $_SESSION["total"] += 1;
+
+    $_SESSION["outputmsg"] = $outputvalue;
+
+    header("Location: ./");
+    exit();
 }
 
 ?>
@@ -133,7 +139,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                         <input type="submit" id="platesubmitb" class="subplate" name="sendbplate" value="BUS" />
                     </div>
                     <div class="row">
-                        <input type="submit" id="platesubmitl" class="subplate" name="sendlplate" value="LOCATION" />
+                        <input type="submit" id="platesubmitl" class="subplate" name="sendlplate" value="RENTED" />
                         <input type="submit" id="platesubmitp" class="subplate" name="sendpplate" value="PARKED" />
                     </div>
                 </div>
@@ -143,11 +149,12 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <form id="endform" method="post">
                 <input type="submit" id="submitend" name="end" value="END SESSION" />
             </form>
-
-            <?php if ($outputvalue != "") {
+            <!-- val "<?php echo $outputvalue ?>" -->
+            <?php if (isset($_SESSION["outputmsg"])) {
             ?>
-                <div id="output"><?php echo $outputvalue ?></div>
+                <div id="output"><?php echo $_SESSION["outputmsg"] ?></div>
         <?php
+                unset($_SESSION["outputmsg"]);
             }
         }
         ?>
