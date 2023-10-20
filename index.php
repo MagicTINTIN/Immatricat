@@ -26,7 +26,7 @@ if (isset($_POST["end"])) {
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
-    <!-- <link rel="icon" type="image/x-icon" href="images/favicon.png"> -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
 </head>
 
 <body>
