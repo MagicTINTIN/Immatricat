@@ -20,7 +20,7 @@ include_once("includes/time.php");
 $outputvalue = "";
 
 if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"]) && isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) {
-    $platename = htmlspecialchars($_POST["plate"]);
+    $platename = strtoupper(htmlspecialchars($_POST["plate"]));
 
     $db = dbConnect();
     $platesStatement = $db->prepare('SELECT * FROM plates WHERE plate = :plate');
@@ -135,15 +135,15 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <form id="plateform" method="post">
                 <div id="multibtn">
                     <div class="row">
-                        <input type="submit" id="platesubmitn" class="subplate" name="sendnplate" value="NORMAL" />
-                        <input type="submit" id="platesubmitb" class="subplate" name="sendbplate" value="BUS" />
+                        <input type="submit" id="platesubmitn" class="subplate subchoice" name="sendnplate" value="NORMAL" />
+                        <input type="submit" id="platesubmitb" class="subplate subchoice" name="sendbplate" value="BUS" />
                     </div>
                     <div class="row">
-                        <input type="submit" id="platesubmitl" class="subplate" name="sendlplate" value="RENTED" />
-                        <input type="submit" id="platesubmitp" class="subplate" name="sendpplate" value="PARKED" />
+                        <input type="submit" id="platesubmitl" class="subplate subchoice" name="sendlplate" value="RENTED" />
+                        <input type="submit" id="platesubmitp" class="subplate subchoice" name="sendpplate" value="PARKED" />
                     </div>
                 </div>
-                <input type="text" id="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input type="text" id="plateinput" class="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </form>
 
             <form id="endform" method="post">

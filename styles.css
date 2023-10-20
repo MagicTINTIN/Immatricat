@@ -58,9 +58,17 @@ main {
     margin-bottom: 1vw;
 }
 
+.subchoice {
+    width: calc( 44.5vw - 20px);
+}
+
+.subimport {
+    width: calc( 90vw - 20px);
+    margin: auto;
+}
+
 .subplate {
     font-size: min( calc(10vw - 20px), calc(8vh - 20px));
-    width: calc( 44.5vw - 20px);
     color:var(--black);
 
     border-radius: 10px;
@@ -103,12 +111,19 @@ main {
 /* PLATE VERIFICATION */
 
 #plateinput {
+    font-size: min( calc(25vw - 20px), calc(30vh - 20px));
+}
+
+#importplateinput {
+    font-size: min( calc(10vw - 20px), calc(10vh - 20px));
+}
+
+.plateinput {
     text-transform:uppercase;
     font-family: 'Lucida Console', monospace;
     text-align: center;
     font-weight: bold;
 
-    font-size: min( calc(25vw - 20px), calc(30vh - 20px));
     box-sizing: content-box;
     
     margin: auto;
