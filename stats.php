@@ -1,16 +1,13 @@
 <?php session_start();
 
 include_once("includes/db.php");
-$outputvalue = "";
+$plates = [];
 
-if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"]) && isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) {
-    $platename = strtoupper(htmlspecialchars($_POST["plate"]));
 
-    $db = dbConnect();
-    $platesStatement = $db->prepare('SELECT * FROM plates');
-    $platesStatement->execute();
-    $plates = $platesStatement->fetchAll();
-}
+$db = dbConnect();
+$platesStatement = $db->prepare('SELECT * FROM plates');
+$platesStatement->execute();
+$plates = $platesStatement->fetchAll();
 
 ?>
 
@@ -42,7 +39,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         <h2>Most seen prefixes</h2>
         <div id="prefixusage" class="split">
             <ol id="prefixlist"></ol>
-            <div id="prefixgraph"></div>
+            <ol id="prefixcolist"></ol>
         </div>
         <div id="letternumberssusage" class="split">
             <div id="letters">
@@ -65,9 +62,20 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                 <span id="totalunique"></span>
                 <span id="doubleletters"></span>
                 <span id="zerocentral"></span>
+                <span id="doubleletter"></span>
+                <span id="doublenumber"></span>
             </div>
         </div>
     </main>
+    <script>
+        const plates = [
+            <?php
+            foreach ($plates as $key => $value) {
+                echo "{name:\"" . $value["plate"] . "\",nbSeen:\"" . $value["nbSeen"] . "\",type:\"" . $value["type"] . "\"},";
+            }
+            ?>
+        ];
+    </script>
     <script src="stats.js"></script>
 </body>
 
