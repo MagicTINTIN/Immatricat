@@ -24,13 +24,13 @@ main {
 
 /* CREATE SESSION */
 
-#createsession, #plateform, #endform {
+#createsession, #plateform, #endform, #seestatsform {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-#sessioninput, #sessionsubmit {
+#sessioninput, #sessionsubmit, #seestats {
     font-family: 'Lucida Console', monospace;
     text-align: center;
     font-weight: bold;

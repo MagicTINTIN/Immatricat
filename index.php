@@ -111,7 +111,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <title>Immatricat</title>
     <link href="vars.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link href="imports.css" rel="stylesheet">
+    <link href="importer/imports.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
@@ -127,6 +127,9 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 
 <body>
     <main>
+        <form id="seestatsform" method="post" action="stats/">
+        <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
+        </form>
         <?php
         if (!isset($_SESSION["name"]) || !isset($_SESSION["time"]) || !isset($_SESSION["total"]) || !isset($_SESSION["updated"]) || !isset($_SESSION["new"])) {
         ?>
@@ -164,10 +167,10 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         <?php
                 unset($_SESSION["outputmsg"]);
             }
+            echo '<script src="script.js"></script>';
         }
         ?>
     </main>
-    <script src="script.js"></script>
 </body>
 
 </html>
