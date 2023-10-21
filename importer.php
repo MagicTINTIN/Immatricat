@@ -122,6 +122,13 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+    <meta property="og:title" content="Importer - Immatricat">
+    <meta property="og:description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
+
+    <meta property="og:image" content="https://etud.insa-toulouse.fr/~serviere/Immatricat/images/favicon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Logo of Immatricat">
 </head>
 
 <body>
