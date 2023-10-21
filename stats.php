@@ -21,6 +21,7 @@ $plates = $platesStatement->fetchAll();
     <title>Statistics - Immatricat</title>
     <link href="vars.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="stats.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
@@ -58,12 +59,12 @@ $plates = $platesStatement->fetchAll();
             </div>
             <div id="variousstats">
                 <h3>Various statistics</h3>
-                <span id="totalplates"></span>
-                <span id="totalunique"></span>
-                <span id="doubleletters"></span>
-                <span id="zerocentral"></span>
-                <span id="doubleletter"></span>
-                <span id="doublenumber"></span>
+                <span id="totalplates"></span><br>
+                <span id="totalunique"></span><br>
+                <span id="totalbuses"></span><br>
+                <span id="zerocentral"></span><br>
+                <span id="doubleletter"></span><br>
+                <span id="doublenumber"></span><br>
             </div>
         </div>
     </main>

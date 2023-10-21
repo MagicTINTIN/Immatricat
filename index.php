@@ -111,6 +111,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <title>Immatricat</title>
     <link href="vars.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="imports.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
