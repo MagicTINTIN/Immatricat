@@ -36,10 +36,13 @@ $plates = $platesStatement->fetchAll();
 </head>
 
 <body>
-    <main class="col">
+    <div class="void"></div>
+    <section class="col">
         <h2>Most seen prefixes</h2>
         <div id="prefixusage" class="split">
+        <h3>All plates</h3>
             <ol id="prefixlist"></ol>
+            <h3>Only car plates (no buses/location cars that)</h3>
             <ol id="prefixcolist"></ol>
         </div>
         <div id="letternumberssusage" class="split">
@@ -67,7 +70,8 @@ $plates = $platesStatement->fetchAll();
                 <span id="doublenumber"></span><br>
             </div>
         </div>
-    </main>
+    </section>
+    <div class="void"></div>
     <script>
         const plates = [
             <?php
