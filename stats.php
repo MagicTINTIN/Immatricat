@@ -42,16 +42,16 @@ $plates = $platesStatement->fetchAll();
         <div id="prefixusage" class="split">
         <h3>All plates</h3>
             <ol id="prefixlist"></ol>
-            <h3>Only car plates (no buses/location cars that)</h3>
+            <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="prefixcolist"></ol>
         </div>
         <div id="letternumberssusage" class="split">
             <div id="letters">
-                <h3>Most used letters</h3>
+                <h3>Most used letters - normal: 2.85%</h3>
                 <ol id="letterslist"></ol>
             </div>
             <div id="numbers">
-                <h3>Most used numbers</h3>
+                <h3>Most used numbers - normal: 10%</h3>
                 <ol id="numberslist"></ol>
             </div>
         </div>
