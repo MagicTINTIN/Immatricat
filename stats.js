@@ -89,7 +89,7 @@ const sortedLetters = Object.entries(letters);
 sortedLetters.sort((a, b) => b[1] - a[1]);
 lettersOL = "";
 for (let index = 0; index < sortedLetters.length; index++) {
-    lettersOL+= `<li>${sortedLetters[index][0]} - ${sortedLetters[index][0]} uses (${100*sortedLetters[index][1]/(3*totalUnique)}%)</li>`;
+    lettersOL+= `<li>${sortedLetters[index][0]} - ${sortedLetters[index][1]} uses (${100*sortedLetters[index][1]/(3*totalUnique)}%)</li>`;
 }
 document.getElementById("letterslist").innerHTML = lettersOL;
 
@@ -97,7 +97,7 @@ const sortedNumbers = Object.entries(numbers);
 sortedNumbers.sort((a, b) => b[1] - a[1]);
 numbersOL = "";
 for (let index = 0; index < sortedNumbers.length; index++) {
-    numbersOL+= `<li>${sortedNumbers[index][0]} - ${sortedNumbers[index][0]} uses (${100*sortedNumbers[index][1]/(3*totalUnique)}%)</li>`;
+    numbersOL+= `<li>${sortedNumbers[index][0]} - ${sortedNumbers[index][1]} uses (${100*sortedNumbers[index][1]/(3*totalUnique)}%)</li>`;
 }
 document.getElementById("numberslist").innerHTML = numbersOL;
 
