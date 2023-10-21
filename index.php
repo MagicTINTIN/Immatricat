@@ -37,7 +37,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         $isNewPlate = 0;
         $oldplatetype = $plates[0]["type"];
         $nbSeen += $plates[0]["nbSeen"];
-        $outputvalue .= "+ Seen " . getTime((int) $plates[0]["lastSeen"], $now) . " ago<br>";
+        $outputvalue .= "+ Seen " . getTime((int) $plates[0]["lastSeen"], $now) . " ago (Seen $nbSeen times)<br>";
     } else {
         $outputvalue .= "+ NEW <br>";
     }
