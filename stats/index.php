@@ -1,6 +1,6 @@
 <?php session_start();
 
-include_once("includes/db.php");
+include_once("../includes/db.php");
 $plates = [];
 
 
@@ -19,13 +19,13 @@ $plates = $platesStatement->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>Statistics - Immatricat</title>
-    <link href="vars.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="../vars.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
     <link href="stats.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
-    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png">
 
     <meta property="og:title" content="Statistics - Immatricat">
     <meta property="og:description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">

@@ -6,17 +6,17 @@ if (isset($_POST["newsession"]) && isset($_POST["startsession"])) {
     $_SESSION["new"] = 0;
     $_SESSION["updated"] = 0;
     $_SESSION["total"] = 0;
-    header("Location: ./importer.php");
+    header("Location: ./");
     exit();
 }
 
 if (isset($_POST["end"])) {
     unset($_SESSION["name"], $_SESSION["time"]);
-    header("Location: ./importer.php");
+    header("Location: ./");
 }
 
-include_once("includes/db.php");
-include_once("includes/time.php");
+include_once("../includes/db.php");
+include_once("../includes/time.php");
 $outputvalue = "";
 
 if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"]) && isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) {
@@ -102,7 +102,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         }
     }
     $_SESSION["outputmsg"] = $outputvalue;
-    header("Location: ./importer.php");
+    header("Location: ./");
     exit();
 }
 
@@ -116,13 +116,13 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <title>Importer - Immatricat</title>
-    <link href="vars.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="../vars.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
     <link href="imports.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
-    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png">
 
     <meta property="og:title" content="Importer - Immatricat">
     <meta property="og:description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
