@@ -1,8 +1,13 @@
 <?php session_start();
 
+if (isset($_POST["gotostats"]))
+{
+    header("Location: ./");
+    exit();
+}
+
 include_once("../includes/db.php");
 $plates = [];
-
 
 $db = dbConnect();
 $platesStatement = $db->prepare('SELECT * FROM plates');
