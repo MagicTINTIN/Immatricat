@@ -1,7 +1,6 @@
 <?php session_start();
 
-if (isset($_POST["gotostats"]))
-{
+if (isset($_POST["gotostats"])) {
     header("Location: ./");
     exit();
 }
@@ -45,14 +44,21 @@ $plates = $platesStatement->fetchAll();
     <section class="col">
         <h2>Most seen prefixes</h2>
         <div id="prefixusage" class="split">
-        <h3>All plates</h3>
+            <h3>All plates</h3>
             <ol id="prefixlist"></ol>
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="prefixcolist"></ol>
         </div>
+        <h2>Most seen suffixes</h2>
+        <div id="suffixusage" class="split">
+            <h3>All plates</h3>
+            <ol id="suffixlist"></ol>
+            <h3>Only car plates (no buses/rentend cars)</h3>
+            <ol id="suffixcolist"></ol>
+        </div>
         <div id="letternumberssusage" class="split">
             <div id="letters">
-                <h3>Most used letters - normal: 2.85%</h3>
+                <h3>Most used letters - normal: 3.85%</h3>
                 <ol id="letterslist"></ol>
             </div>
             <div id="numbers">
