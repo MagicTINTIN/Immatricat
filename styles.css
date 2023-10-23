@@ -22,6 +22,10 @@ main {
     width: 100%;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 /* CREATE SESSION */
 
 #createsession, #plateform, #endform, #seestatsform {

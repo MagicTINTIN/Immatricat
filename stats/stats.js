@@ -1,3 +1,12 @@
+function getTime(d1, d2) {
+    diffMs = d2 - d1;
+    diffDays = Math.floor(diffMs / 86400); //   days
+    diffHrs = Math.floor((diffMs % 86400) / 3600); // hours
+    diffMins = Math.round(((diffMs % 86400) % 3600) / 60); // minutes
+    diffSecs = Math.round((((diffMs % 86400) % 3600) % 60)); // seconds
+    return diffDays + "d " + diffHrs + "h " + diffMins + "m " + diffSecs + "s";
+}
+
 prefixes = {};
 prefixesCarOnly = {};
 
@@ -81,12 +90,12 @@ for (const plate of plates) {
     }
     addP(prefix);
     addS(suffix);
-    if (parseInt(plate["type"]) <= 3) {
+    if (plate["type"] <= 3) {
         addPCO(prefix);
         addSCO(suffix);
         totalUniqueCarOnly++;
     }
-    totalPlates += parseInt(plate["nbSeen"]);
+    totalPlates += plate["nbSeen"];
 
     if (plate["name"][0] == plate["name"][1] || plate["name"][1] == plate["name"][2] || plate["name"][2] == plate["name"][0])
         doubleLetter++;
@@ -158,3 +167,28 @@ document.getElementById("totalbuses").innerHTML = `Buses/rented cars : ${totalUn
 document.getElementById("doubleletter").innerHTML = `2 or 3 identical letters : ${doubleLetter} plates (${percentages(doubleLetter / totalUnique)}% - normal: 11.24%)`;
 document.getElementById("doublenumber").innerHTML = `2 or 3 identical numbers : ${doubleNumber} plates (${percentages(doubleNumber / totalUnique)}% - normal: 28%)`;
 document.getElementById("zerocentral").innerHTML = `Has a 0 as center number : ${central0} plates (${percentages(central0 / totalUnique)}% - normal: 10%)`;
+
+// document.getElementById("btnsearch").addEventListener("click pointerdown touch")
+
+function searchPlate() {
+    search = ""
+    nbElements = 0;
+    const val = document.getElementById("platesearchinput").value;
+    if (val.length < 1 || val.length > 6)
+        return;
+    for (const plate of plates) {
+        if (plate.name.includes(val)) {
+            nbElements++;
+            typecar = "";
+            if (plate.type == "3")
+                typecar = "(parked) ";
+            if (plate.type == "5")
+                typecar = "(bus) ";
+            if (plate.type == "7")
+                typecar = "(rented car) ";
+            search += `<li>${plate.name.split(val).join("<span class='bold'>" + val + "</span>")} ${typecar}- Seen : ${plate.nbSeen} ${(plate.nbSeen > 1) ? "times" : "time"} : last time seen ${getTime(plate.lastSeen, Math.floor(Date.now() / 1000))}</li>`;
+        }
+    }
+    document.getElementById("foundnb").innerHTML = `Found ${nbElements} result${(nbElements > 1) ? "s" : ""}${(nbElements > 0) ? " :" : "."}`
+    document.getElementById("searchedplates").innerHTML = search;
+}

@@ -81,13 +81,22 @@ $plates = $platesStatement->fetchAll();
                 <span id="doublenumber"></span><br>
             </div>
         </div>
+        <div>
+            <h2>Search for specific plates</h2>
+            <span>Enter what should contain the plate : </span>
+            <input type="text" id="platesearchinput" class="platesearchinput" name="platesearch" minlength="1" maxlength="6" size="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <button onclick="searchPlate()" id="btnsearch">SEARCH</button>
+            <br>
+            <span id="foundnb"></span>
+            <ul id="searchedplates"></ul>
+        </div>
     </section>
     <div class="void"></div>
     <script>
         const plates = [
             <?php
             foreach ($plates as $key => $value) {
-                echo "{name:\"" . $value["plate"] . "\",nbSeen:\"" . $value["nbSeen"] . "\",type:\"" . $value["type"] . "\"},";
+                echo "{name:\"" . $value["plate"] . "\",nbSeen:" . $value["nbSeen"] . ",type:" . $value["type"] . ",lastSeen:" . $value["lastSeen"] . "},";
             }
             ?>
         ];
