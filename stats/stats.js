@@ -1,4 +1,6 @@
 function getTime(d1, d2) {
+    if (d1 <= 1697832735)
+        return "a long time ago";
     diffMs = d2 - d1;
     diffDays = Math.floor(diffMs / 86400); //   days
     diffHrs = Math.floor((diffMs % 86400) / 3600); // hours
@@ -173,7 +175,7 @@ document.getElementById("zerocentral").innerHTML = `Has a 0 as center number : $
 function searchPlate() {
     search = ""
     nbElements = 0;
-    const val = document.getElementById("platesearchinput").value;
+    const val = document.getElementById("platesearchinput").value.toUpperCase();
     if (val.length < 1 || val.length > 6)
         return;
     for (const plate of plates) {
