@@ -42,36 +42,36 @@ $plates = $platesStatement->fetchAll();
 <body>
     <div class="void"></div>
     <section class="col">
-        <h2>Most seen prefixes</h2>
-        <div id="prefixusage" class="split">
+        <h2><span class="menuopenclose" id="prefixusagebtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen prefixes</h2>
+        <div id="prefixusage" class="split closable">
             <h3>All plates</h3>
             <ol id="prefixlist"></ol>
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="prefixcolist"></ol>
         </div>
-        <h2>Most seen suffixes</h2>
-        <div id="suffixusage" class="split">
+        <h2><span class="menuopenclose" id="suffixusagebtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen suffixes</h2>
+        <div id="suffixusage" class="split closable">
             <h3>All plates</h3>
             <ol id="suffixlist"></ol>
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="suffixcolist"></ol>
         </div>
-        <h2>Most seen couple of Letters</h2>
-        <div id="dprefixusage" class="split">
+        <h2><span class="menuopenclose" id="dprefixusagebtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen couple of Letters</h2>
+        <div id="dprefixusage" class="split closable">
             <h3>All plates</h3>
             <ol id="dprefixlist"></ol>
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="dprefixcolist"></ol>
         </div>
-        <h2>Most seen couple of Numbers</h2>
-        <div id="dsuffixusage" class="split">
+        <h2><span class="menuopenclose" id="dsuffixusagebtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen couple of Numbers</h2>
+        <div id="dsuffixusage" class="split closable">
             <h3>All plates</h3>
             <ol id="dsuffixlist"></ol>
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="dsuffixcolist"></ol>
         </div>
-        <h2>Most seen Characters</h2>
-        <div id="letternumberssusage" class="split">
+        <h2><span class="menuopenclose" id="letternumberssusagebtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen Characters</h2>
+        <div id="letternumberssusage" class="split closable">
             <div id="letters">
                 <h3>Most used letters - normal: 3.85%</h3>
                 <ol id="letterslist"></ol>
@@ -81,7 +81,8 @@ $plates = $platesStatement->fetchAll();
                 <ol id="numberslist"></ol>
             </div>
         </div>
-        <div class="split">
+        <h2><span class="menuopenclose" id="mostseenplatesbtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Most seen plates</h2>
+        <div class="split closable" id="mostseenplates">
             <div>
                 <h3>Most seen plates</h3>
                 <ol id="nbSeen"></ol>
@@ -91,8 +92,8 @@ $plates = $platesStatement->fetchAll();
                 <ul id="nbnbSeen"></ul>
             </div>
         </div>
-        <div id="variousstats">
-            <h3>Various statistics</h3>
+        <h2><span class="menuopenclose" id="variousstatsbtn" onclick="openclose(this)" ontouchstart="openclose(this)">︾</span> | Various statistics</h2>
+        <div id="variousstats" class="closable">
             <span id="totalplates"></span><br>
             <span id="totalunique"></span><br>
             <span id="totalbuses"></span><br>
@@ -120,6 +121,7 @@ $plates = $platesStatement->fetchAll();
             ?>
         ];
     </script>
+    <script src="style.js"></script>
     <script src="stats.js"></script>
 </body>
 
