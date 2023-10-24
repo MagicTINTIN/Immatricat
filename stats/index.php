@@ -56,6 +56,21 @@ $plates = $platesStatement->fetchAll();
             <h3>Only car plates (no buses/rentend cars)</h3>
             <ol id="suffixcolist"></ol>
         </div>
+        <h2>Most seen couple of Letters</h2>
+        <div id="dprefixusage" class="split">
+            <h3>All plates</h3>
+            <ol id="dprefixlist"></ol>
+            <h3>Only car plates (no buses/rentend cars)</h3>
+            <ol id="dprefixcolist"></ol>
+        </div>
+        <h2>Most seen couple of Numbers</h2>
+        <div id="dsuffixusage" class="split">
+            <h3>All plates</h3>
+            <ol id="dsuffixlist"></ol>
+            <h3>Only car plates (no buses/rentend cars)</h3>
+            <ol id="dsuffixcolist"></ol>
+        </div>
+        <h2>Most seen Characters</h2>
         <div id="letternumberssusage" class="split">
             <div id="letters">
                 <h3>Most used letters - normal: 3.85%</h3>

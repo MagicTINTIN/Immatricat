@@ -12,8 +12,14 @@ function getTime(d1, d2) {
 prefixes = {};
 prefixesCarOnly = {};
 
+doublePrefixes = {};
+doublePrefixesCarOnly = {};
+
 suffixes = {};
 suffixesCarOnly = {};
+
+doubleSuffixes = {};
+doubleSuffixesCarOnly = {};
 
 letters = {};
 numbers = {};
@@ -56,6 +62,34 @@ function addSCO(toAdd) {
         suffixesCarOnly[toAdd] += 1;
 }
 
+function addDP(toAdd) {
+    if (!doublePrefixes[toAdd])
+        doublePrefixes[toAdd] = 1;
+    else
+        doublePrefixes[toAdd] += 1;
+}
+
+function addDPCO(toAdd) {
+    if (!doublePrefixesCarOnly[toAdd])
+        doublePrefixesCarOnly[toAdd] = 1;
+    else
+        doublePrefixesCarOnly[toAdd] += 1;
+}
+
+function addDS(toAdd) {
+    if (!doubleSuffixes[toAdd])
+        doubleSuffixes[toAdd] = 1;
+    else
+        doubleSuffixes[toAdd] += 1;
+}
+
+function addDSCO(toAdd) {
+    if (!doubleSuffixesCarOnly[toAdd])
+        doubleSuffixesCarOnly[toAdd] = 1;
+    else
+        doubleSuffixesCarOnly[toAdd] += 1;
+}
+
 function addL(toAdd) {
     if (!letters[toAdd])
         letters[toAdd] = 1;
@@ -95,15 +129,22 @@ for (const plate of plates) {
     }
     addP(prefix);
     addS(suffix);
+    addDP(plate["name"][0] + plate["name"][1]);
+    addDP(plate["name"][1] + plate["name"][2]);
+    addDS(plate["name"][3] + plate["name"][4]);
+    addDS(plate["name"][4] + plate["name"][5]);
     if (plate["type"] <= 3) {
         addPCO(prefix);
         addSCO(suffix);
+        addDPCO(plate["name"][0] + plate["name"][1]);
+        addDPCO(plate["name"][1] + plate["name"][2]);
+        addDSCO(plate["name"][3] + plate["name"][4]);
+        addDSCO(plate["name"][4] + plate["name"][5]);
         totalUniqueCarOnly++;
     }
     const nbseen = plate["nbSeen"];
     totalPlates += nbseen;
-    if (maxNbSeen < nbseen)
-    {
+    if (maxNbSeen < nbseen) {
         for (let index = maxNbSeen; index < nbseen; index++) {
             nbNbSeen[index] = 0;
         }
@@ -117,6 +158,8 @@ for (const plate of plates) {
     if (plate["name"][3] == plate["name"][4] || plate["name"][4] == plate["name"][5] || plate["name"][5] == plate["name"][3])
         doubleNumber++;
 }
+
+// PREFIXES AND SUFFIXES STATS
 
 const sortedPrefixes = Object.entries(prefixes);
 sortedPrefixes.sort((a, b) => b[1] - a[1]);
@@ -149,6 +192,42 @@ for (let index = 0; index < Math.min(sortedSuffixesCarOnly.length, 20); index++)
     suffixescoOL += `<li>${sortedSuffixesCarOnly[index][0]} - ${sortedSuffixesCarOnly[index][1]} plates (${percentages(sortedSuffixesCarOnly[index][1] / totalUniqueCarOnly)}%)</li>`;
 }
 document.getElementById("suffixcolist").innerHTML = suffixescoOL;
+
+// COUPLE OF LETTERS AND NUMBERS STATS
+
+const sortedDoublePrefixes = Object.entries(doublePrefixes);
+sortedDoublePrefixes.sort((a, b) => b[1] - a[1]);
+doublePrefixesOL = "";
+for (let index = 0; index < Math.min(sortedDoublePrefixes.length, 10); index++) {
+    doublePrefixesOL += `<li>${sortedDoublePrefixes[index][0]} - ${sortedDoublePrefixes[index][1]} plates (${percentages(sortedDoublePrefixes[index][1] / totalUnique)}%)</li>`;
+}
+document.getElementById("dprefixlist").innerHTML = doublePrefixesOL;
+
+const sortedDoublePrefixesCarOnly = Object.entries(doublePrefixesCarOnly);
+sortedDoublePrefixesCarOnly.sort((a, b) => b[1] - a[1]);
+doublePrefixescoOL = "";
+for (let index = 0; index < Math.min(sortedDoublePrefixesCarOnly.length, 10); index++) {
+    doublePrefixescoOL += `<li>${sortedDoublePrefixesCarOnly[index][0]} - ${sortedDoublePrefixesCarOnly[index][1]} plates (${percentages(sortedDoublePrefixesCarOnly[index][1] / totalUniqueCarOnly)}%)</li>`;
+}
+document.getElementById("dprefixcolist").innerHTML = doublePrefixescoOL;
+
+const sortedDoubleSuffixes = Object.entries(doubleSuffixes);
+sortedDoubleSuffixes.sort((a, b) => b[1] - a[1]);
+doubleSuffixesOL = "";
+for (let index = 0; index < Math.min(sortedDoubleSuffixes.length, 10); index++) {
+    doubleSuffixesOL += `<li>${sortedDoubleSuffixes[index][0]} - ${sortedDoubleSuffixes[index][1]} plates (${percentages(sortedDoubleSuffixes[index][1] / totalUnique)}%)</li>`;
+}
+document.getElementById("dsuffixlist").innerHTML = doubleSuffixesOL;
+
+const sortedDoubleSuffixesCarOnly = Object.entries(doubleSuffixesCarOnly);
+sortedDoubleSuffixesCarOnly.sort((a, b) => b[1] - a[1]);
+doubleSuffixescoOL = "";
+for (let index = 0; index < Math.min(sortedDoubleSuffixesCarOnly.length, 10); index++) {
+    doubleSuffixescoOL += `<li>${sortedDoubleSuffixesCarOnly[index][0]} - ${sortedDoubleSuffixesCarOnly[index][1]} plates (${percentages(sortedDoubleSuffixesCarOnly[index][1] / totalUniqueCarOnly)}%)</li>`;
+}
+document.getElementById("dsuffixcolist").innerHTML = doubleSuffixescoOL;
+
+// LETTERS AND NUMBERS STATS
 
 const sortedLetters = Object.entries(letters);
 sortedLetters.sort((a, b) => b[1] - a[1]);
