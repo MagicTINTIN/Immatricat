@@ -18,6 +18,9 @@ suffixesCarOnly = {};
 letters = {};
 numbers = {};
 
+nbNbSeen = []
+maxNbSeen = 0;
+
 central0 = 0;
 doubleLetter = 0;
 doubleNumber = 0;
@@ -97,7 +100,16 @@ for (const plate of plates) {
         addSCO(suffix);
         totalUniqueCarOnly++;
     }
-    totalPlates += plate["nbSeen"];
+    const nbseen = plate["nbSeen"];
+    totalPlates += nbseen;
+    if (maxNbSeen < nbseen)
+    {
+        for (let index = maxNbSeen; index < nbseen; index++) {
+            nbNbSeen[index] = 0;
+        }
+        maxNbSeen = nbseen;
+    }
+    nbNbSeen[nbseen - 1]++;
 
     if (plate["name"][0] == plate["name"][1] || plate["name"][1] == plate["name"][2] || plate["name"][2] == plate["name"][0])
         doubleLetter++;
@@ -161,6 +173,15 @@ for (let index = 0; index < Math.min(sortedNbSeenPlates.length, 20); index++) {
     nbseenplatesOL += `<li>${sortedNbSeenPlates[index].name} seen ${sortedNbSeenPlates[index].nbSeen} times</li>`;
 }
 document.getElementById("nbSeen").innerHTML = nbseenplatesOL;
+
+nbbnbseenplateUL = "";
+for (let index = 0; index < maxNbSeen; index++) {
+    let nbplates = nbNbSeen[index];
+    for (let i = index + 1; i < maxNbSeen; i++)
+        nbplates += nbNbSeen[i];
+    nbbnbseenplateUL += `<li>Seen ${index + 1}+ time${(index > 0) ? "s" : ""} - ${nbplates} car${(nbplates > 1) ? "s" : ""}</li>`;
+}
+document.getElementById("nbnbSeen").innerHTML = nbbnbseenplateUL;
 
 
 document.getElementById("totalplates").innerHTML = `Total plates written ${totalPlates}`;

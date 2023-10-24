@@ -71,15 +71,19 @@ $plates = $platesStatement->fetchAll();
                 <h3>Most seen plates</h3>
                 <ol id="nbSeen"></ol>
             </div>
-            <div id="variousstats">
-                <h3>Various statistics</h3>
-                <span id="totalplates"></span><br>
-                <span id="totalunique"></span><br>
-                <span id="totalbuses"></span><br>
-                <span id="zerocentral"></span><br>
-                <span id="doubleletter"></span><br>
-                <span id="doublenumber"></span><br>
+            <div>
+                <h3>Plates seen numbers</h3>
+                <ul id="nbnbSeen"></ul>
             </div>
+        </div>
+        <div id="variousstats">
+            <h3>Various statistics</h3>
+            <span id="totalplates"></span><br>
+            <span id="totalunique"></span><br>
+            <span id="totalbuses"></span><br>
+            <span id="zerocentral"></span><br>
+            <span id="doubleletter"></span><br>
+            <span id="doublenumber"></span><br>
         </div>
         <div>
             <h2>Search for specific plates</h2>
