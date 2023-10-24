@@ -275,19 +275,24 @@ document.getElementById("zerocentral").innerHTML = `Has a 0 as center number : $
 function searchPlate() {
     search = ""
     nbElements = 0;
+    normalFilter = document.getElementById("normalfilter").checked;
+    busFilter = document.getElementById("busfilter").checked;
+    rentedFilter = document.getElementById("rentedfilter").checked;
     const val = document.getElementById("platesearchinput").value.toUpperCase();
     if (val.length < 1 || val.length > 6)
         return;
     for (const plate of plates) {
-        if (plate.name.includes(val)) {
+        if (plate.name.includes(val) && ((plate.type != 0 && plate.type != 3) || normalFilter) && (plate.type != 5 || busFilter) && (plate.type != 7 || rentedFilter)) {
             nbElements++;
             typecar = "";
-            if (plate.type == "3")
-                typecar = "(parked) ";
-            if (plate.type == "5")
-                typecar = "(bus) ";
-            if (plate.type == "7")
-                typecar = "(rented car) ";
+            if (plate.type == 3)
+                typecar = "[P] ";
+            if (plate.type == 5)
+                typecar = "[B] ";
+            if (plate.type == 7)
+                typecar = "[R] ";
+            else
+                typecar = "[N] "
             search += `<li>${plate.name.split(val).join("<span class='bold'>" + val + "</span>")} ${typecar}- Seen : ${plate.nbSeen} ${(plate.nbSeen > 1) ? "times" : "time"} : last time seen ${getTime(plate.lastSeen, Math.floor(Date.now() / 1000))}</li>`;
         }
     }

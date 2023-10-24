@@ -107,6 +107,15 @@ $plates = $platesStatement->fetchAll();
             <input type="text" id="platesearchinput" class="platesearchinput" name="platesearch" minlength="1" maxlength="6" size="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <button onclick="searchPlate()" id="btnsearch">SEARCH</button>
             <br>
+            <label for="normalfilter">Normal</label>
+            <input type="checkbox" id="normalfilter" name="normalfilter" value="normalFilter" checked="checked">
+            <span> | </span>
+            <label for="busfilter">Bus</label>
+            <input type="checkbox" id="busfilter" name="busfilter" value="busFilter" checked="checked">
+            <span> | </span>
+            <label for="rentedfilter">Rented</label>
+            <input type="checkbox" id="rentedfilter" name="rentedfilter" value="rentedFilter" checked="checked">
+            <br>
             <span id="foundnb"></span>
             <ul id="searchedplates"></ul>
         </div>

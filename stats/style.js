@@ -2,7 +2,7 @@ function openclose(object) {
     divtoopenclose = object.id.slice(0, -3); 
     if (object.innerHTML == "︾")
     {
-        document.getElementById(divtoopenclose).style.maxHeight = "100vh";
+        document.getElementById(divtoopenclose).style.maxHeight = "200vh";
         object.innerHTML = "︽";
     }
     else

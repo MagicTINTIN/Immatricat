@@ -46,6 +46,6 @@ h2 {
     height: auto;
     max-height: 0px;
     overflow: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     transition: all 0.5s;
 }
