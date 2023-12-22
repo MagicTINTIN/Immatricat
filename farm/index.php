@@ -128,7 +128,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 <body>
     <main>
         <form id="seestatsform" method="post" action="../stats/">
-        <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
+            <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
         </form>
         <?php
         if (!isset($_SESSION["name"]) || !isset($_SESSION["time"]) || !isset($_SESSION["total"]) || !isset($_SESSION["updated"]) || !isset($_SESSION["new"])) {
@@ -142,20 +142,19 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <?php }
         } else {
             ?>
-            <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
-            <form id="plateform" method="post">
-                <div id="multibtn">
-                    <div class="row">
-                        <input type="submit" id="platesubmitn" class="subplate subchoice" name="sendnplate" value="NORMAL" />
-                        <input type="submit" id="platesubmitb" class="subplate subchoice" name="sendbplate" value="BUS" />
-                    </div>
-                    <div class="row">
-                        <input type="submit" id="platesubmitl" class="subplate subchoice" name="sendlplate" value="RENTED" />
-                        <input type="submit" id="platesubmitp" class="subplate subchoice" name="sendpplate" value="PARKED" />
-                    </div>
+            <form id="plateType" method="post">
+                <div class="row">
+                    <input type="submit" id="normalPlateSub" class="subplate subchoice" name="setnplate" value="NORMAL" />
+                    <input type="submit" id="parkedPlateSub" class="subplate subchoice" name="setpplate" value="PARKED" />
                 </div>
-                <input type="text" id="plateinput" class="plateinput" name="plate" required pattern="^[A-Za-z]{3}\d{3}$" oldpattern="[a-zA-Z0-9_-]+" minlength="6" maxlength="6" size="6" title="Enter the car plate" placeholder="XXX000" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </form>
+            <form id="plateform" method="post">
+                <input type="submit" id="platesubmit" class="subplate subchoice" name="sendplate" value="SEND" />
+                <input type="hidden" id="platevalue" value="">
+                <span id="plateinput" class="plateinput">---⋅⋅⋅</span>
+            </form>
+            <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
+
 
             <form id="endform" method="post">
                 <input type="submit" id="submitend" name="end" value="END SESSION" />
