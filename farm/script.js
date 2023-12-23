@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     plateInput.setSelectionRange(0, 0);
 });
 
+window.plate = ""
+
 function addSymbol(s) {
     console.log(`Added "${s}"`);
 }
@@ -55,6 +57,25 @@ function setAzertyKeyboard() {
     <button onclick="addSymbol('V')" class="keyButton">V</button>
     <button onclick="addSymbol('B')" class="keyButton">B</button>
     <button onclick="addSymbol('N')" class="keyButton">N</button>
+    <button onclick="removeSymbol()" class="keyButton">←</button>
+    </div>`;
+}
+
+function setNumberKeyboard() {
+    document.getElementById("keyboardDiv") = `<div class="keyboardRow">
+    <button onclick="addSymbol('7')" class="keyButton">7</button>
+    <button onclick="addSymbol('8')" class="keyButton">8</button>
+    <button onclick="addSymbol('9')" class="keyButton">9</button>
+    </div><div class="keyboardRow">
+    <button onclick="addSymbol('4')" class="keyButton">4</button>
+    <button onclick="addSymbol('5')" class="keyButton">5</button>
+    <button onclick="addSymbol('6')" class="keyButton">6</button>
+    </div><div class="keyboardRow">
+    <button onclick="addSymbol('1')" class="keyButton">1</button>
+    <button onclick="addSymbol('2')" class="keyButton">2</button>
+    <button onclick="addSymbol('3')" class="keyButton">3</button>
+    </div><div class="keyboardRow">
+    <button onclick="addSymbol('0')" class="keyButton">0</button>
     <button onclick="removeSymbol()" class="keyButton">←</button>
     </div>`;
 }
