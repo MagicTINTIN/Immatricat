@@ -142,6 +142,9 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <?php }
         } else {
             ?>
+            <form id="endform" method="post">
+                <input type="submit" id="submitend" name="end" value="END SESSION" />
+            </form>
             <form id="plateType" method="post">
                 <div class="row">
                     <input type="submit" id="normalPlateSub" class="subplate subchoice" name="setnplate" value="NORMAL" />
@@ -154,19 +157,17 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                 <span id="plateinput" class="plateinput">---⋅⋅⋅</span>
             </form>
             <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
-
-
-            <form id="endform" method="post">
-                <input type="submit" id="submitend" name="end" value="END SESSION" />
-            </form>
-            <!-- val "<?php echo $outputvalue ?>" -->
+            
             <?php if (isset($_SESSION["outputmsg"])) {
             ?>
                 <div id="output"><?php echo $_SESSION["outputmsg"] ?></div>
         <?php
                 unset($_SESSION["outputmsg"]);
             }
-            echo '<script src="script.js"></script>';
+            ?>
+            <div id="keyboardDiv"></div>
+            <script src="script.js"></script>
+            <?php
         }
         ?>
     </main>
