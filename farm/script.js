@@ -17,14 +17,24 @@ document.addEventListener('DOMContentLoaded', function () {
     plateInput.setSelectionRange(0, 0);
 });
 
-window.plate = ""
+window.plate = "";
+window.indexPlate = 0;
 
-function addSymbol(s) {
-    console.log(`Added "${s}"`);
-}
+function updatePlate() {
+    document.getElementById("platevalue").value = window.plate;
+    let displayedPlate = "";
+    for (let index = 0; index < 6; index++) {
+        if (index < window.plate.length)
+            displayedPlate += window.plate[index];
+        else {
+            if (index < 3)
+                displayedPlate += "-";
+            else
+                displayedPlate += "⋅";
+        }
+    }
 
-function removeSymbol() {
-    console.log(`Remove last char`);
+    document.getElementById("plateinput").value = displayedPlate;
 }
 
 function setAzertyKeyboard() {
@@ -79,3 +89,30 @@ function setNumberKeyboard() {
     <button onclick="removeSymbol()" class="keyButton">←</button>
     </div>`;
 }
+
+function updateKeyboard() {
+    if (window.indexPlate < 3)
+        setAzertyKeyboard();
+    else
+        setNumberKeyboard();
+}
+
+function addSymbol(s) {
+    console.log(`Added "${s}"`);
+    if (window.plate.length < 6) {
+        window.plate += s;
+        window.indexPlate++;
+    }
+    updatePlate();
+    updateKeyboard();
+}
+
+function removeSymbol() {
+    console.log(`Remove last char`);
+    window.plate.slice(0, -1);
+    window.indexPlate--;
+    updatePlate();
+    updateKeyboard();
+}
+
+updateKeyboard();
