@@ -1,21 +1,16 @@
 const plateInput = document.getElementById('plateinput');
 const submitButtons = document.querySelectorAll('.subplate[type="submit"]');
 
+const platePattern = /^[A-Za-z]{3}\d{3}$/;
+
 function updtButtons() {
-    const isValid = plateInput.checkValidity();
+    const isValid = platePattern.test(window.plate);
     submitButtons.forEach((button) => {
         button.disabled = !isValid;
     });
 }
 
-plateInput.addEventListener('input', e => updtButtons());
 updtButtons();
-
-document.addEventListener('DOMContentLoaded', function () {
-    plateInput.focus();
-    plateInput.select();
-    plateInput.setSelectionRange(0, 0);
-});
 
 window.plate = "";
 window.indexPlate = 0;
@@ -34,11 +29,11 @@ function updatePlate() {
         }
     }
 
-    document.getElementById("plateinput").value = displayedPlate;
+    document.getElementById("plateinput").innerHTML = displayedPlate;
 }
 
 function setAzertyKeyboard() {
-    document.getElementById("keyboardDiv") = `<div class="keyboardRow">
+    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow">
     <button onclick="addSymbol('A')" class="keyButton">A</button>
     <button onclick="addSymbol('Z')" class="keyButton">Z</button>
     <button onclick="addSymbol('E')" class="keyButton">E</button>
@@ -72,7 +67,7 @@ function setAzertyKeyboard() {
 }
 
 function setNumberKeyboard() {
-    document.getElementById("keyboardDiv") = `<div class="keyboardRow">
+    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow">
     <button onclick="addSymbol('7')" class="keyButton">7</button>
     <button onclick="addSymbol('8')" class="keyButton">8</button>
     <button onclick="addSymbol('9')" class="keyButton">9</button>
@@ -109,10 +104,11 @@ function addSymbol(s) {
 
 function removeSymbol() {
     console.log(`Remove last char`);
-    window.plate.slice(0, -1);
+    window.plate = window.plate.slice(0, -1);
     window.indexPlate--;
     updatePlate();
     updateKeyboard();
 }
 
 updateKeyboard();
+

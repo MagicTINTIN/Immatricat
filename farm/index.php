@@ -111,11 +111,11 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <title>Immatricat - Farm</title>
     <link href="vars.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link href="importer/imports.css" rel="stylesheet">
+    <link href="../importer/imports.css" rel="stylesheet">
     <meta name="author" content="MagicTINTIN">
     <meta name="description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
 
-    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.png">
 
     <meta property="og:title" content="Immatricat">
     <meta property="og:description" content="J'ai aucun problème avec les statistiques. J'arrête quand je veux.">
