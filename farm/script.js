@@ -16,6 +16,7 @@ window.plate = "";
 window.indexPlate = 0;
 
 function updatePlate() {
+    updtButtons();
     document.getElementById("platevalue").value = window.plate;
     let displayedPlate = "";
     for (let index = 0; index < 6; index++) {
@@ -93,7 +94,7 @@ function updateKeyboard() {
 }
 
 function addSymbol(s) {
-    console.log(`Added "${s}"`);
+    //console.log(`Added "${s}"`);
     if (window.plate.length < 6) {
         window.plate += s;
         window.indexPlate++;
@@ -103,7 +104,7 @@ function addSymbol(s) {
 }
 
 function removeSymbol() {
-    console.log(`Remove last char`);
+    //console.log(`Remove last char`);
     window.plate = window.plate.slice(0, -1);
     window.indexPlate--;
     updatePlate();
@@ -112,3 +113,49 @@ function removeSymbol() {
 
 updateKeyboard();
 
+function enableGetKey() {
+    document.body.addEventListener('keyup', getKeyEvent);
+}
+
+enableGetKey();
+
+function getKeyEvent(e) {
+    //console.log(e, e.key);
+    if (window.indexPlate < 3 && e.key.toLowerCase() == "a") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "z") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "e") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "r") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "t") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "y") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "u") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "i") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "o") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "p") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "q") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "s") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "d") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "f") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "g") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "h") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "j") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "k") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "l") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "m") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "w") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "x") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "c") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "v") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "b") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate < 3 && e.key.toLowerCase() == "n") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "0") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "1") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "2") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "3") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "4") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "5") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "6") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "7") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "8") addSymbol(e.key.toUpperCase());
+    else if (window.indexPlate > 2 && e.key.toLowerCase() == "9") addSymbol(e.key.toUpperCase());
+    else if (e.key == "Backspace") removeSymbol();
+};
