@@ -145,13 +145,13 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <form id="endform" method="post">
                 <input type="submit" id="submitend" name="end" value="END SESSION" />
             </form>
-            <form id="plateType" method="post">
+            <form id="plateType" method="post" class="buttonsForm">
                 <div class="row">
                     <input type="submit" id="normalPlateSub" class="subplate subchoice" name="setnplate" value="NORMAL" />
                     <input type="submit" id="parkedPlateSub" class="subplate subchoice" name="setpplate" value="PARKED" />
                 </div>
             </form>
-            <form id="plateform" method="post">
+            <form id="plateform" method="post" class="buttonsForm">
                 <input type="submit" id="platesubmit" class="subplate subchoice" name="sendplate" value="SEND" />
                 <input type="hidden" id="platevalue" value="">
                 <span id="plateinput" class="plateinput">---⋅⋅⋅</span>

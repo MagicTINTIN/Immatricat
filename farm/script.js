@@ -34,7 +34,7 @@ function updatePlate() {
 }
 
 function setAzertyKeyboard() {
-    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow">
+    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow cols10 letters">
     <button onclick="addSymbol('A')" class="keyButton">A</button>
     <button onclick="addSymbol('Z')" class="keyButton">Z</button>
     <button onclick="addSymbol('E')" class="keyButton">E</button>
@@ -45,7 +45,7 @@ function setAzertyKeyboard() {
     <button onclick="addSymbol('I')" class="keyButton">I</button>
     <button onclick="addSymbol('O')" class="keyButton">O</button>
     <button onclick="addSymbol('P')" class="keyButton">P</button>
-    </div><div class="keyboardRow">
+    </div><div class="keyboardRow cols10 letters">
     <button onclick="addSymbol('Q')" class="keyButton">Q</button>
     <button onclick="addSymbol('S')" class="keyButton">S</button>
     <button onclick="addSymbol('D')" class="keyButton">D</button>
@@ -56,7 +56,7 @@ function setAzertyKeyboard() {
     <button onclick="addSymbol('K')" class="keyButton">K</button>
     <button onclick="addSymbol('L')" class="keyButton">L</button>
     <button onclick="addSymbol('M')" class="keyButton">M</button>
-    </div><div class="keyboardRow">
+    </div><div class="keyboardRow cols7 letters">
     <button onclick="addSymbol('W')" class="keyButton">W</button>
     <button onclick="addSymbol('X')" class="keyButton">X</button>
     <button onclick="addSymbol('C')" class="keyButton">C</button>
@@ -68,19 +68,19 @@ function setAzertyKeyboard() {
 }
 
 function setNumberKeyboard() {
-    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow">
+    document.getElementById("keyboardDiv").innerHTML = `<div class="keyboardRow cols3 numbers">
     <button onclick="addSymbol('7')" class="keyButton">7</button>
     <button onclick="addSymbol('8')" class="keyButton">8</button>
     <button onclick="addSymbol('9')" class="keyButton">9</button>
-    </div><div class="keyboardRow">
+    </div><div class="keyboardRow cols3 numbers">
     <button onclick="addSymbol('4')" class="keyButton">4</button>
     <button onclick="addSymbol('5')" class="keyButton">5</button>
     <button onclick="addSymbol('6')" class="keyButton">6</button>
-    </div><div class="keyboardRow">
+    </div><div class="keyboardRow cols3 numbers">
     <button onclick="addSymbol('1')" class="keyButton">1</button>
     <button onclick="addSymbol('2')" class="keyButton">2</button>
     <button onclick="addSymbol('3')" class="keyButton">3</button>
-    </div><div class="keyboardRow">
+    </div><div class="keyboardRow cols2 numbers">
     <button onclick="addSymbol('0')" class="keyButton">0</button>
     <button onclick="removeSymbol()" class="keyButton">←</button>
     </div>`;
