@@ -1,5 +1,9 @@
 <?php session_start();
 
+if (!isset($_SESSION["isParked"])) $_SESSION["isParked"] = false;
+
+if (isset($_POST["parkedToggle"])) $_SESSION["isParked"] = $_SESSION["isParked"] == false ? true : false;
+
 if (isset($_POST["newsession"]) && isset($_POST["startsession"])) {
     $_SESSION["name"] = htmlspecialchars($_POST["newsession"]);
     $_SESSION["time"] = time();
@@ -15,8 +19,8 @@ if (isset($_POST["end"])) {
     header("Location: ./");
 }
 
-include_once("includes/db.php");
-include_once("includes/time.php");
+include_once("../includes/db.php");
+include_once("../includes/time.php");
 $outputvalue = "";
 
 if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"]) && isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) {
@@ -42,17 +46,9 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
         $outputvalue .= "+ NEW <br>";
     }
 
-    if (isset($_POST["sendnplate"])) {
+    if ($_SESSION["isParked"] == false) {
         // do nothing
-    } else if (isset($_POST["sendlplate"])) {
-        if ($oldplatetype != 7)
-            $outputvalue .= "-> Rented car<br>";
-        $newplatetype = 7;
-    } else if (isset($_POST["sendbplate"])) {
-        if ($oldplatetype != 5)
-            $outputvalue .= "-> Bus<br>";
-        $newplatetype = 5;
-    } else if (isset($_POST["sendpplate"])) {
+    }else if ($_SESSION["isParked"] == true) {
         if ($oldplatetype == 3) {
             $isNewPlate = -1;
             $outputvalue .= "ALREADY SEEN PARKED<br>";
@@ -60,7 +56,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             $outputvalue .= "-> Parked<br>";
         $newplatetype = 3;
     }
-    if (!isset($_POST["sendpplate"]) && $oldplatetype == 3) {
+    if ($_SESSION["isParked"] == false && $oldplatetype == 3) {
         $outputvalue .= "-> Not parked<br>";
     }
 
@@ -147,8 +143,12 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             </form>
             <form id="plateType" method="post" class="buttonsForm">
                 <div class="row">
-                    <input type="submit" id="normalPlateSub" class="subplate subchoice" name="setnplate" value="NORMAL" />
-                    <input type="submit" id="parkedPlateSub" class="subplate subchoice" name="setpplate" value="PARKED" />
+                    <?php if ($_SESSION["isParked"] == true) {
+                        ?>
+                    <input type="submit" id="parkedToggle" class="subplate subchoice" name="parkedToggle" value="SWITCH TO NORMAL" />
+                    <?php } else { ?>
+                    <input type="submit" id="parkedToggle" class="subplate subchoice" name="parkedToggle" value="SWITCH TO PARKED" />
+                    <?php } ?>
                 </div>
             </form>
             <form id="plateform" method="post" class="buttonsForm">
