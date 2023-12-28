@@ -97,7 +97,7 @@ function addSymbol(s) {
     //console.log(`Added "${s}"`);
     if (window.plate.length < 6) {
         window.plate += s;
-        window.indexPlate++;
+        window.indexPlate = window.plate.length;
     }
     updatePlate();
     updateKeyboard();
@@ -106,7 +106,7 @@ function addSymbol(s) {
 function removeSymbol() {
     //console.log(`Remove last char`);
     window.plate = window.plate.slice(0, -1);
-    window.indexPlate--;
+    window.indexPlate = window.plate.length;
     updatePlate();
     updateKeyboard();
 }

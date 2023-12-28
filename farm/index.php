@@ -31,6 +31,11 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     $platesStatement->execute(['plate' => $platename]);
     $plates = $platesStatement->fetchAll();
 
+    if (!preg_match('/^[A-Za-z]{3}\d{3}$/', $platename)) {
+        $_SESSION["outputmsg"] = "$platename is not a valid plate";
+        header("Location: ./");
+        exit();
+    }
 
     $isNewPlate = 1;
     $newplatetype = 0;
@@ -151,12 +156,12 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                     <?php } ?>
                 </div>
             </form>
+            <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
             <form id="plateform" method="post" class="buttonsForm">
                 <input type="submit" id="platesubmit" class="largeButton subplate" name="sendplate" value="SEND" />
                 <input type="hidden" id="platevalue" name="plate" value="">
                 <span id="plateinput" class="plateinput">---⋅⋅⋅</span>
             </form>
-            <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
             
             <?php if (isset($_SESSION["outputmsg"])) {
             ?>
