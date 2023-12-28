@@ -145,15 +145,15 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                 <div class="row">
                     <?php if ($_SESSION["isParked"] == true) {
                         ?>
-                    <input type="submit" id="parkedToggle" class="subplate subchoice" name="parkedToggle" value="SWITCH TO NORMAL" />
+                    <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO NORMAL" />
                     <?php } else { ?>
-                    <input type="submit" id="parkedToggle" class="subplate subchoice" name="parkedToggle" value="SWITCH TO PARKED" />
+                    <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO PARKED" />
                     <?php } ?>
                 </div>
             </form>
             <form id="plateform" method="post" class="buttonsForm">
-                <input type="submit" id="platesubmit" class="subplate subchoice" name="sendplate" value="SEND" />
-                <input type="hidden" id="platevalue" value="">
+                <input type="submit" id="platesubmit" class="largeButton subplate" name="sendplate" value="SEND" />
+                <input type="hidden" id="platevalue" name="plate" value="">
                 <span id="plateinput" class="plateinput">---⋅⋅⋅</span>
             </form>
             <div id="stats"><?php echo "New : " . $_SESSION["new"] . " | Updated : " . $_SESSION["updated"] . " | Total : " . $_SESSION["total"] ?></div>
