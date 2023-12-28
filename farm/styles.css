@@ -239,9 +239,21 @@ main {
     justify-content: space-around;
 }
 
-.letters .keyButton {height: 16vh; font-size: 2vh;}
-.numbers .keyButton {height: 12vh; font-size: 2vh;}
+.keyButton {
+    font-size: 2vh;
+}
+
+.letters .keyButton {height: 16vh;}
+.numbers .keyButton {height: 12vh;}
 .cols2 .keyButton { width: calc(100% / 2)}
 .cols3 .keyButton { width: calc(100% / 3)}
 .cols7 .keyButton { width: calc(100% / 7)}
 .cols10 .keyButton { width: calc(100% / 10)}
+
+.key00 {
+    width: calc(100% * 6 / 7);
+}
+
+.key0backspace {
+    width: calc(100% / 7);
+}

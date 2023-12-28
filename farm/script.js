@@ -80,9 +80,9 @@ function setNumberKeyboard() {
     <button onclick="addSymbol('1')" class="keyButton">1</button>
     <button onclick="addSymbol('2')" class="keyButton">2</button>
     <button onclick="addSymbol('3')" class="keyButton">3</button>
-    </div><div class="keyboardRow cols2 numbers">
-    <button onclick="addSymbol('0')" class="keyButton">0</button>
-    <button onclick="removeSymbol()" class="keyButton">←</button>
+    </div><div class="keyboardRow numbers">
+    <button onclick="addSymbol('0')" class="keyButton key00">0</button>
+    <button onclick="removeSymbol()" class="keyButton key0backspace">←</button>
     </div>`;
 }
 
@@ -118,6 +118,12 @@ function enableGetKey() {
 }
 
 enableGetKey();
+
+function submitPlate() {
+    const isValid = platePattern.test(window.plate);
+    if (isValid)
+        document.getElementById("plateform").submit();
+}
 
 function getKeyEvent(e) {
     //console.log(e, e.key);
@@ -158,4 +164,5 @@ function getKeyEvent(e) {
     else if (window.indexPlate > 2 && e.key.toLowerCase() == "8") addSymbol(e.key.toUpperCase());
     else if (window.indexPlate > 2 && e.key.toLowerCase() == "9") addSymbol(e.key.toUpperCase());
     else if (e.key == "Backspace") removeSymbol();
+    else if (e.key == "Enter") submitPlate();
 };
