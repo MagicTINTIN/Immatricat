@@ -9,6 +9,9 @@ html, body {
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
+* {
+    touch-action: manipulation;
+}
 
 body {
     display: flex;
@@ -75,7 +78,7 @@ main {
 }
 
 .subplate {
-    font-size: min( calc(7vw - 20px), calc(5vh - 20px));
+    font-size: min( calc(9vw - 20px), calc(7vh - 20px));
     color:var(--black);
 
     border-radius: 10px;
@@ -87,7 +90,7 @@ main {
 .largeButton {
     width:90vw;
 
-    font-size: min( calc(7vw - 20px), calc(5vh - 20px));
+    font-size: min( calc(9vw - 20px), calc(7vh - 20px));
     color:var(--black);
 
     border-radius: 10px;
@@ -241,6 +244,15 @@ main {
 
 .keyButton {
     font-size: 2vh;
+    border-radius: 0;
+    border: 1px solid gray;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.keyButton:active {
+    background-color: darkgray;
 }
 
 .letters .keyButton {height: 16vh;}

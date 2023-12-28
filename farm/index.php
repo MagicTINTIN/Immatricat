@@ -53,7 +53,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 
     if ($_SESSION["isParked"] == false) {
         // do nothing
-    }else if ($_SESSION["isParked"] == true) {
+    } else if ($_SESSION["isParked"] == true) {
         if ($oldplatetype == 3) {
             $isNewPlate = -1;
             $outputvalue .= "ALREADY SEEN PARKED<br>";
@@ -109,6 +109,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Immatricat - Farm</title>
     <link href="vars.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
@@ -128,12 +129,12 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 
 <body>
     <main>
-        <form id="seestatsform" method="post" action="../stats/">
-            <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
-        </form>
         <?php
         if (!isset($_SESSION["name"]) || !isset($_SESSION["time"]) || !isset($_SESSION["total"]) || !isset($_SESSION["updated"]) || !isset($_SESSION["new"])) {
         ?>
+            <form id="seestatsform" method="post" action="../stats/">
+                <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
+            </form>
             <form id="createsession" method="post">
                 <input type="text" id="sessioninput" name="newsession" required maxlength="32" placeholder="pseudo" title="Enter a pseudo for your session">
                 <input type="submit" id="sessionsubmit" name="startsession" value="START" />
@@ -149,10 +150,10 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <form id="plateType" method="post" class="buttonsForm">
                 <div class="row">
                     <?php if ($_SESSION["isParked"] == true) {
-                        ?>
-                    <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO NORMAL" />
+                    ?>
+                        <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO NORMAL" />
                     <?php } else { ?>
-                    <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO PARKED" />
+                        <input type="submit" id="parkedToggle" class="largeButton" name="parkedToggle" value="SWITCH TO PARKED" />
                     <?php } ?>
                 </div>
             </form>
@@ -162,17 +163,17 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
                 <input type="hidden" id="platevalue" name="plate" value="">
                 <span id="plateinput" class="plateinput">---⋅⋅⋅</span>
             </form>
-            
+
             <?php if (isset($_SESSION["outputmsg"])) {
             ?>
                 <div id="output"><?php echo $_SESSION["outputmsg"] ?></div>
-        <?php
+            <?php
                 unset($_SESSION["outputmsg"]);
             }
             ?>
             <div id="keyboardDiv"></div>
             <script src="script.js"></script>
-            <?php
+        <?php
         }
         ?>
     </main>
