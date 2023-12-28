@@ -75,7 +75,19 @@ main {
 }
 
 .subplate {
-    font-size: min( calc(10vw - 20px), calc(8vh - 20px));
+    font-size: min( calc(7vw - 20px), calc(5vh - 20px));
+    color:var(--black);
+
+    border-radius: 10px;
+    border: 5px solid var(--black);
+    box-sizing:border-box;
+    filter: saturate(1);
+}
+
+.largeButton {
+    width:90vw;
+
+    font-size: min( calc(7vw - 20px), calc(5vh - 20px));
     color:var(--black);
 
     border-radius: 10px;
