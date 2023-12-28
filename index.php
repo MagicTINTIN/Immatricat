@@ -128,7 +128,7 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
 <body>
     <main>
         <form id="seestatsform" method="post" action="stats/">
-        <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
+            <input type="submit" id="seestats" name="gotostats" value="SEE STATISTICS >>" />
         </form>
         <?php
         if (!isset($_SESSION["name"]) || !isset($_SESSION["time"]) || !isset($_SESSION["total"]) || !isset($_SESSION["updated"]) || !isset($_SESSION["new"])) {
@@ -136,6 +136,10 @@ if (isset($_POST["plate"]) && isset($_SESSION["name"]) && isset($_SESSION["time"
             <form id="createsession" method="post">
                 <input type="text" id="sessioninput" name="newsession" required maxlength="32" placeholder="pseudo" title="Enter a pseudo for your session">
                 <input type="submit" id="sessionsubmit" name="startsession" value="START" />
+            </form>
+
+            <form id="farmform" method="post" action="farm/">
+                <input type="submit" id="farmbutton" name="gotofarm" value="NEW INTERFACE >>" />
             </form>
             <?php if (isset($_SESSION["new"]) && isset($_SESSION["updated"]) && isset($_SESSION["total"])) { ?>
                 <div id="output"><?php echo "New : " . $_SESSION["new"] . "<br>Updated : " . $_SESSION["updated"] . "<br>Total : " . $_SESSION["total"] ?></div>
